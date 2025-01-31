@@ -53,6 +53,7 @@ async function fetchIssues() {
   const response = await octokit.issues.listForRepo({
     owner: templateOwner,
     repo: templateRepo,
+    sort: "created-asc ",
   });
   return response.data;
 }
