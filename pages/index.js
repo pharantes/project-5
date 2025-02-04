@@ -1,7 +1,14 @@
-export default function HomePage() {
+import ArtsList from "./components/ArtsList";
+export default function HomePage({ data, setFavorite }) {
   return (
     <div>
-      <h1>Hello from Next.js</h1>
+      <h1>Art Gallery</h1>
+
+      <ArtsList
+        data={data}
+        setFavorite={setFavorite}
+      />
+
     </div>
   );
 }
