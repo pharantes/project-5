@@ -8,7 +8,7 @@ let initialState;
 async function fetcher() {
   const response = await fetch(url);
   const data = await response.json();
-  nitialState = data?.map((art) => {
+  initialState = data?.map((art) => {
     return { ...art, comments: [], favorite: false };
   });
   return initialState;
