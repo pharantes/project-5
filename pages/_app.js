@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import Nav from "./components/NavBar";
 import useLocalStorage from "use-local-storage-state";
 import { SWRConfig } from "swr";
+import { useState } from "react";
 
 const url = "https://example-apis.vercel.app/api/art";
 let initialState;
@@ -49,9 +50,7 @@ export default function App({ Component, pageProps }) {
     );
     setFavorites(arts.filter((art) => art.favorite === true));
   }
-  if (arts == undefined) {
-    return <div>Loading...</div>;
-  } else {
+  if (arts != undefined) {
     return (
       <>
         <SWRConfig
@@ -70,5 +69,7 @@ export default function App({ Component, pageProps }) {
         <Nav />
       </>
     );
+  } else {
+    return <div>Loading...</div>;
   }
 }
