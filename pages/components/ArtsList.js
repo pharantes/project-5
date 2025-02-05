@@ -5,11 +5,10 @@ const ArtsListUl = styled.ul`
   list-style-type: none;
 `;
 export default function ArtsList({ data, toggleFavorite, addComment }) {
-  // console.log(data)
 
   return (
     <ArtsListUl>
-      {data.map((art, index) => {
+      {data?.map((art, index) => {
         return (
           <li key={index}>
             <ArtDetail

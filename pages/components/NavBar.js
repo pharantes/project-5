@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Bar = styled.nav`
   position: fixed;
@@ -26,20 +27,26 @@ const NavLink = styled(Link)`
 import React from 'react'
 
 export default function NavBar() {
-    return (
-        <Bar>
-            <MainNav >
-                <NavLi>
-                    <NavLink href="/" >Gallery</NavLink>
-                </NavLi>
-                <NavLi>
-                    <NavLink href="/spotlight" >Spotlight</NavLink>
-                </NavLi>
-                <NavLi>
-                    <NavLink href="/favorites" >Favorites</NavLink>
-                </NavLi>
+  return (
+    <Bar>
+      <MainNav >
+        <NavLi>
+          <NavLink href="/" >Gallery</NavLink>
+        </NavLi>
+        <NavLi>
+          <NavLink href="/spotlight" >
+            <Image
+              src={"/assets/spotlight.svg"}
+              width={20}
+              height={20}
+              alt="favorite icon"
+            /></NavLink>
+        </NavLi>
+        <NavLi>
+          <NavLink href="/favorites" >Favorites</NavLink>
+        </NavLi>
 
-            </MainNav>
-        </Bar>
-    )
+      </MainNav>
+    </Bar>
+  )
 }

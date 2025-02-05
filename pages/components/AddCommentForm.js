@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const AddForm = styled.form`
-max-width: 400px
+  max-width: 400px
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
