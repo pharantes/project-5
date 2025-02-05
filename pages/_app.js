@@ -1,28 +1,25 @@
 import GlobalStyle from "../styles";
 import Nav from "./components/NavBar";
 import useLocalStorage from "use-local-storage-state";
-import { SWRConfig } from "swr";
-import { useState } from "react";
-
-const url = "https://example-apis.vercel.app/api/art";
-let initialState;
-async function fetcher() {
-  const response = await fetch(url);
-  const data = await response.json();
-  initialState = data?.map((art) => {
-    return { ...art, comments: [], favorite: false };
-  });
-  return initialState;
-}
+import useSWR from "swr";
 
 export default function App({ Component, pageProps }) {
-  const [arts, setArts] = useLocalStorage("arts", {
-    defaultValue: initialState,
+
+  const URL = "https://example-apis.vercel.app/api/art";
+  async function fetcher() {
+    const response = await fetch(URL);
+    return await response.json();
+  }
+  const { data, isLoading, error } = useSWR(URL, fetcher);
+  const initialState = data?.map((art) => {
+    return { ...art, comments: [], favorite: false };
   });
   const [favorites, setFavorites] = useLocalStorage("favorites", {
     defaultValue: [],
   });
-
+  const [arts, setArts] = useLocalStorage("arts", {
+    defaultValue: initialState,
+  });
   function toggleFavorite(name) {
     setArts((prevState) =>
       prevState.map((art) => {
@@ -50,14 +47,12 @@ export default function App({ Component, pageProps }) {
     );
     setFavorites(arts.filter((art) => art.favorite === true));
   }
-  if (arts != undefined) {
+
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
+  if (!isLoading) {
     return (
       <>
-        <SWRConfig
-          value={{
-            fetcher,
-          }}
-        ></SWRConfig>
         <GlobalStyle />
         <Component
           favorites={favorites}
@@ -68,8 +63,7 @@ export default function App({ Component, pageProps }) {
         />
         <Nav />
       </>
-    );
-  } else {
-    return <div>Loading...</div>;
+    )
   }
+
 }
