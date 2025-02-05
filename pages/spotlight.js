@@ -15,7 +15,7 @@ export default function Spotlight() {
         <h2>Spotlight</h2>
         <ArtDetail
           toggleFavorite={toggleFavorite}
-          art={arts[random]}
+          art={arts?.[random]}
           addComment={addComment}
         />
       </>
