@@ -5,7 +5,7 @@ import { useArtContext } from "../utils/use-art-context"
 export default function Spotlight() {
   const { arts, toggleFavorite, addComment, isLoading, error } = useArtContext()
 
-  const random = Math.floor(Math.random() * arts.length);
+  const random = Math.floor(Math.random() * arts?.length);
   if (error) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
   if (!isLoading) {
