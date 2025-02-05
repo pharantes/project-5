@@ -4,7 +4,6 @@ import { useRouter } from "next/router.js";
 import ArtDetail from "./components/ArtDetail";
 import { useArtContext } from "../utils/use-art-context"
 
-
 export default function DetailPage() {
   const { arts, toggleFavorite, addComment, isLoading, error } = useArtContext()
   const router = useRouter();

@@ -2,14 +2,19 @@
   "env": {
     "jest": true
   },
-  "extends": ["next/core-web-vitals", "plugin:jest/recommended"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:jest/recommended"
+  ],
   "rules": {
     "import/no-anonymous-default-export": [
       "error",
       {
-        "allowObject": true
+        "allowObject": false
       }
     ]
   },
-  "plugins": ["jest"]
+  "plugins": [
+    "jest"
+  ]
 }
