@@ -1,13 +1,18 @@
 import GlobalStyle from "../styles";
 import Nav from "./components/NavBar";
 import useLocalStorage from "use-local-storage-state";
+import { SWRConfig } from "swr";
 
 const url = "https://example-apis.vercel.app/api/art";
-const response = await fetch(url);
-const data = await response.json();
-const initialState = data?.map((art) => {
-  return { ...art, comments: [], favorite: false };
-});
+let initialState;
+async function fetcher() {
+  const response = await fetch(url);
+  const data = await response.json();
+  nitialState = data?.map((art) => {
+    return { ...art, comments: [], favorite: false };
+  });
+  return initialState;
+}
 
 export default function App({ Component, pageProps }) {
   const [arts, setArts] = useLocalStorage("arts", {
@@ -49,6 +54,11 @@ export default function App({ Component, pageProps }) {
   } else {
     return (
       <>
+        <SWRConfig
+          value={{
+            fetcher,
+          }}
+        ></SWRConfig>
         <GlobalStyle />
         <Component
           favorites={favorites}
