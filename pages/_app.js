@@ -10,7 +10,6 @@ const initialState = data?.map((art) => {
   return { ...art, comments: [], favorite: false };
 });
 export default function App({ Component, pageProps }) {
-  // const [localArts, setLocalArts] = useLocalStorage("arts", { defaultValue: initialState })
   const [arts, setArts] = useLocalStorage("arts", {
     defaultValue: initialState,
   });
