@@ -1,4 +1,3 @@
-import { useState } from "react";
 import GlobalStyle from "../styles";
 import Nav from "./components/NavBar";
 import useLocalStorage from "use-local-storage-state";
@@ -9,6 +8,7 @@ const data = await response.json();
 const initialState = data?.map((art) => {
   return { ...art, comments: [], favorite: false };
 });
+
 export default function App({ Component, pageProps }) {
   const [arts, setArts] = useLocalStorage("arts", {
     defaultValue: initialState,
@@ -30,6 +30,7 @@ export default function App({ Component, pageProps }) {
     );
     setFavorites(arts.filter((art) => art.favorite === true));
   }
+
   function addComment(name, comment) {
     setArts((prevState) =>
       prevState.map((art) => {
@@ -43,17 +44,21 @@ export default function App({ Component, pageProps }) {
     );
     setFavorites(arts.filter((art) => art.favorite === true));
   }
-  return (
-    <>
-      <GlobalStyle />
-      <Component
-        favorites={favorites}
-        data={arts}
-        toggleFavorite={toggleFavorite}
-        addComment={addComment}
-        {...pageProps}
-      />
-      <Nav />
-    </>
-  );
+  if (arts == undefined) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <>
+        <GlobalStyle />
+        <Component
+          favorites={favorites}
+          data={arts}
+          toggleFavorite={toggleFavorite}
+          addComment={addComment}
+          {...pageProps}
+        />
+        <Nav />
+      </>
+    );
+  }
 }

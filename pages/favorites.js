@@ -1,6 +1,5 @@
 import ArtsList from "./components/ArtsList";
 export default function HomePage({ toggleFavorite, favorites, addComment }) {
-  console.log(favorites);
   return (
     <div>
       <h1>Art Gallery</h1>
