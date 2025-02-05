@@ -24,7 +24,7 @@ export const ArtProvider = ({ children }) => {
     function toggleFavorite(name) {
         setArts((prevState) =>
             prevState.map((art) => {
-                if (art.name === name) {
+                if (art?.name === name) {
                     art.favorite = !art.favorite;
                     return art;
                 } else {
@@ -32,21 +32,21 @@ export const ArtProvider = ({ children }) => {
                 }
             })
         );
-        setFavorites(arts.filter((art) => art.favorite === true));
+        setFavorites(arts.filter((art) => art?.favorite === true));
     }
 
     function addComment(name, comment) {
         setArts((prevState) =>
             prevState.map((art) => {
-                if (art.name === name) {
-                    art.comments.push(comment);
+                if (art?.name === name) {
+                    art?.comments.push(comment);
                     return art;
                 } else {
                     return art;
                 }
             })
         );
-        setFavorites(arts.filter((art) => art.favorite === true));
+        setFavorites(arts.filter((art) => art?.favorite === true));
     }
     return (
         <ArtContext.Provider value={{ arts, favorites, toggleFavorite, addComment, isLoading, error }}>

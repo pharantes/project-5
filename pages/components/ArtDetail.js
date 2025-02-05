@@ -34,30 +34,30 @@ export default function ArtDetail({ art, toggleFavorite, addComment }) {
   return (
     <ArtBox>
       <Icon
-        favorite={art.favorite}
-        name={art.name}
+        favorite={art?.favorite}
+        name={art?.name}
         onToggleFavorite={toggleFavorite}
       />
-      <StyledLink href={`/${art.slug}`}>Art name: {art.name}</StyledLink>
+      <StyledLink href={`/${art?.slug}`}>Art name: {art?.name}</StyledLink>
       <Image
-        alt={`This image is ${art.name} from ${art.artist}`}
-        src={art.imageSource}
+        alt={`This image is ${art?.name} from ${art?.artist}`}
+        src={art?.imageSource}
         width={160}
         height={320}
       />
-      <StyledName>Artist: {art.artist}</StyledName>
-      <StyledName>Year: {art.year}</StyledName>
-      <StyledName>Genre: {art.genre}</StyledName>
+      <StyledName>Artist: {art?.artist}</StyledName>
+      <StyledName>Year: {art?.year}</StyledName>
+      <StyledName>Genre: {art?.genre}</StyledName>
       <StyledName>Color pallet: </StyledName>
       <ColorWrap>
-        {art.colors.map((color, index) => {
+        {art?.colors.map((color, index) => {
           return <ColorDiv key={index} style={{ backgroundColor: color }} />;
         })}
       </ColorWrap>
       <AddCommentForm art={art} onAddComment={addComment} />
       <StyledName>Comments: </StyledName>
       <ul>
-        {art.comments?.map((comment, index) => {
+        {art?.comments?.map((comment, index) => {
           return <li key={index}>{comment}</li>;
         })}
       </ul>
