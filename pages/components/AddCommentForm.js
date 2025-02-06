@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const AddForm = styled.form`
   position: relative;
-  border: 1px solid #101820;
-  border-radius: 8px;
 `;
 const Input = styled.textarea`
   width: 100%;
-  border: none;
+  border: 1px solid #101820;
+  border-radius: 8px;
+  margin-top: 6px;
 `;
 const Label = styled.label`
   width: 100%;
@@ -19,7 +19,7 @@ const Button = styled.button`
   right: 0;
   border: none;
   background-color: transparent;
-  padding: 8px
+  padding: 14px 6px;
 `;
 
 export default function ArtDetail({ art, onAddComment }) {
