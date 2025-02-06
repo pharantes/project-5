@@ -15,6 +15,6 @@ export default createGlobalStyle`
 
   }
     h2 {
-      padding: 0 0 0 2rem;
+      padding: 4rem 0 0 2rem;
     }
 `;

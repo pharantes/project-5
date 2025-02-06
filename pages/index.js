@@ -9,7 +9,6 @@ export default function HomePage() {
   if (!isLoading) {
     return (
       <div>
-        <h1>Art Gallery</h1>
         <h2>Home</h2>
 
         <ArtsList

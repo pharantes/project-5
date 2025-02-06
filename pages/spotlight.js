@@ -10,7 +10,6 @@ export default function Spotlight() {
   if (!isLoading) {
     return (
       <>
-        <h1>Art Gallery</h1>
         <h2>Spotlight</h2>
         <ArtsList
           toggleFavorite={toggleFavorite}
