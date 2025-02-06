@@ -7,7 +7,7 @@ const ArtsList = styled.div`
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 0 2rem;
 `;
 const ArtItem = styled.div`
   display: flex;
@@ -21,7 +21,6 @@ const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 360px;
 `;
 const StyledTitle = styled.h4`
   font-size: 1.2rem;

@@ -12,7 +12,6 @@ const ArtBox = styled.div`
 const StyledName = styled.span`
   font-size: 1rem;
   padding: .5rem 0;
-
 `;
 const ColorDiv = styled.div`
   height: 50px;
@@ -33,10 +32,13 @@ const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 360px;
 `;
 const StyledTitle = styled.h4`
   font-size: 1.2rem;
+`;
+const StyledUl = styled.ul`
+list-decoration-style: none;
+padding: 0;
 `;
 const ImageContainer = styled.div`
   height: 540px;
@@ -79,11 +81,11 @@ export default function ArtDetail({ art, toggleFavorite, addComment }) {
       </ColorWrap>
       <AddCommentForm art={art} onAddComment={addComment} />
       <StyledName>Comments: </StyledName>
-      <ul>
+      <StyledUl>
         {art?.comments?.map((comment, index) => {
           return <li key={index}>{comment}</li>;
         })}
-      </ul>
+      </StyledUl>
     </ArtBox>
   );
 }
