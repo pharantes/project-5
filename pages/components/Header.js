@@ -11,6 +11,7 @@ const Bar = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
+  z-index: 2;
 `
 const Title = styled.h1`
   color: #FEE715;

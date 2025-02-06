@@ -7,7 +7,7 @@ import AddCommentForm from "./AddCommentForm";
 const ArtBox = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 0 2rem;
 `;
 const StyledName = styled.span`
   font-size: 1rem;
@@ -23,12 +23,11 @@ const ColorDiv = styled.div`
 const ColorWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: .5rem 0;
+  padding: 1rem 0 2rem 0;
 `;
 const InfoWrap = styled.div`
   display: flex;
   justify-content: space-between;
-
 `;
 const TitleWrap = styled.div`
   display: flex;
@@ -38,6 +37,11 @@ const TitleWrap = styled.div`
 `;
 const StyledTitle = styled.h4`
   font-size: 1.2rem;
+`;
+const ImageContainer = styled.div`
+  height: 540px;
+  width: 100%;
+  position: relative;
 `;
 export default function ArtDetail({ art, toggleFavorite, addComment }) {
   return (
@@ -52,15 +56,15 @@ export default function ArtDetail({ art, toggleFavorite, addComment }) {
           onToggleFavorite={toggleFavorite}
         />
       </TitleWrap>
-      <Image
-        alt={`This image is ${art?.name} from ${art?.artist}`}
-        src={art?.imageSource}
-        width={360}
-        height={480}
-        style={{
-          borderRadius: "8px",
-        }}
-      />
+      <ImageContainer>
+        <Image
+          alt={`This image is ${art?.name} from ${art?.artist}`}
+          src={art?.imageSource}
+          fill
+          objectFit="cover"
+          style={{ borderRadius: "16px", }}
+        />
+      </ImageContainer>
       <InfoWrap>
         <StyledName>{art?.artist}</StyledName>
         <StyledName>{art?.genre}</StyledName>

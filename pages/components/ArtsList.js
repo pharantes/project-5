@@ -3,39 +3,43 @@ import Image from "next/image";
 import Link from "next/link";
 import Icon from "./Icon";
 
-const ArtsListUl = styled.ul`
-  list-style-type: none;
-  padding: 0;
+const ArtsList = styled.div`
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.4rem;
 `;
-const ArtsListLi = styled.li`
+const ArtItem = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const StyledName = styled.p`
-margin-top: .4rem
+  margin-top: .4rem
   font-size: 1rem;
 `;
 const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 360px;
+  width: 360px;
 `;
 const StyledTitle = styled.h4`
   font-size: 1.2rem;
 `;
-export default function ArtsList({ data, toggleFavorite }) {
+const ImageContainer = styled.div`
+  height: 540px;
+  width: 100%;
+  position: relative;
+`;
+
+
+export default function ArtsListComponent({ data, toggleFavorite }) {
 
   return (
-    <ArtsListUl>
+    <ArtsList>
       {data?.map((art, index) => {
         return (
-          <ArtsListLi key={index}>
+          <ArtItem key={index}>
             <TitleWrap>
               <Link href={`/${art?.slug}`}>
                 <StyledTitle>{art?.name}</StyledTitle>
@@ -46,20 +50,20 @@ export default function ArtsList({ data, toggleFavorite }) {
                 onToggleFavorite={toggleFavorite}
               />
             </TitleWrap>
-            <Image
-              alt={`This image is ${art?.name} from ${art?.artist}`}
-              src={art?.imageSource}
-              width={360}
-              height={480}
-              style={{
-                borderRadius: "8px",
-              }}
-            />
+            <ImageContainer>
+              <Image
+                alt={`This image is ${art?.name} from ${art?.artist}`}
+                src={art?.imageSource}
+                fill
+                objectFit="cover"
+                style={{ borderRadius: "16px", }}
+              />
+            </ImageContainer>
             <StyledName><strong>Artist:</strong> {art?.artist}</StyledName>
 
-          </ArtsListLi>
+          </ArtItem>
         );
       })}
-    </ArtsListUl>
+    </ArtsList>
   );
 }

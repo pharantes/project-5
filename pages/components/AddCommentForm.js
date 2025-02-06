@@ -3,9 +3,12 @@ import Image from "next/image";
 
 const AddForm = styled.form`
   position: relative;
+  border: 1px solid #101820;
+  border-radius: 8px;
 `;
 const Input = styled.textarea`
   width: 100%;
+  border: none;
 `;
 const Label = styled.label`
   width: 100%;

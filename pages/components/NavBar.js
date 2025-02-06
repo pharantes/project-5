@@ -8,6 +8,8 @@ const Bar = styled.nav`
   width: 100vw;
   background-color: #101820;
   border: 1px solid rgba(0,0,0,0.2);
+  z-index: 2;
+
 `
 const MainNav = styled.ul`
   list-style-type: none;
