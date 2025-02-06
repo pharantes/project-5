@@ -9,46 +9,65 @@ const ArtBox = styled.div`
   flex-direction: column;
   padding: 2rem;
 `;
-const StyledLink = styled(Link)`
-  font-size: 1.2rem;
-  padding: 0.5rem 0;
-  text-decoration: none;
-`;
-const StyledName = styled.p`
+const StyledName = styled.span`
   font-size: 1rem;
-  text-decoration: none;
+  padding: .5rem 0;
+
 `;
 const ColorDiv = styled.div`
   height: 50px;
   width: 50px;
-
   border-radius: 50%;
   background-color: blue;
 `;
 const ColorWrap = styled.div`
-  height: 100px;
   display: flex;
-  gap: 0.5rem;
+  justify-content: space-between;
+  padding: .5rem 0;
+`;
+const InfoWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+`;
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 360px;
+`;
+const StyledTitle = styled.h4`
+  font-size: 1.2rem;
 `;
 export default function ArtDetail({ art, toggleFavorite, addComment }) {
   return (
     <ArtBox>
-      <Icon
-        favorite={art?.favorite}
-        name={art?.name}
-        onToggleFavorite={toggleFavorite}
-      />
-      <StyledLink href={`/${art?.slug}`}>Art name: {art?.name}</StyledLink>
+      <TitleWrap>
+        <StyledTitle>
+          <Link href={`/${art?.slug}`}>{art?.name}</Link>
+        </StyledTitle>
+        <Icon
+          favorite={art?.favorite}
+          name={art?.name}
+          onToggleFavorite={toggleFavorite}
+        />
+      </TitleWrap>
       <Image
         alt={`This image is ${art?.name} from ${art?.artist}`}
         src={art?.imageSource}
-        width={160}
-        height={320}
+        width={360}
+        height={480}
+        style={{
+          borderRadius: "8px",
+        }}
       />
-      <StyledName>Artist: {art?.artist}</StyledName>
-      <StyledName>Year: {art?.year}</StyledName>
-      <StyledName>Genre: {art?.genre}</StyledName>
+      <InfoWrap>
+        <StyledName>{art?.artist}</StyledName>
+        <StyledName>{art?.genre}</StyledName>
+        <StyledName>Year: {art?.year}</StyledName>
+      </InfoWrap>
       <StyledName>Color pallet: </StyledName>
+
       <ColorWrap>
         {art?.colors.map((color, index) => {
           return <ColorDiv key={index} style={{ backgroundColor: color }} />;

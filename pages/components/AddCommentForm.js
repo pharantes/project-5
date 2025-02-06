@@ -1,10 +1,22 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 const AddForm = styled.form`
-  max-width: 400px
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1rem;
+  position: relative;
+`;
+const Input = styled.textarea`
+  width: 100%;
+`;
+const Label = styled.label`
+  width: 100%;
+`;
+const Button = styled.button`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  padding: 8px
 `;
 
 export default function ArtDetail({ art, onAddComment }) {
@@ -17,8 +29,13 @@ export default function ArtDetail({ art, onAddComment }) {
     <AddForm
       onSubmit={(e) => handleAddComment(e, art.name, e.target.comment.value)}
     >
-      <input name="comment" type="textarea" rows="4" cols="50" />
-      <button type="submit">Add Comment</button>
+      <Label>Add a comment :</Label>
+      <Input rows={6} name="comment" type="textarea" />
+      <Button>
+        <Image alt="submit message icon" src={"/assets/send-message.svg"} width={20} height={20} />
+      </Button>
+
     </AddForm>
+
   );
 }

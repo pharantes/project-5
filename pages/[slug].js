@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router.js";
 import ArtDetail from "./components/ArtDetail";
+import Pagination from "./components/Pagination";
 import { useArtContext } from "../utils/use-art-context"
 
 export default function DetailPage() {
@@ -30,18 +31,8 @@ export default function DetailPage() {
           addComment={addComment}
           toggleFavorite={toggleFavorite}
         />
-        {previousArt ? (
-          <div>
-            <Link href={`/${previousArt.slug}`}>
-              ← Previous Art: {previousArt.name}
-            </Link>
-          </div>
-        ) : null}
-        {nextArt ? (
-          <div>
-            <Link href={`/${nextArt.slug}`}>Next Art: {nextArt.name} →</Link>
-          </div>
-        ) : null}
+        <Pagination prevArt={previousArt} nextArt={nextArt} />
+
       </>
     );
   }

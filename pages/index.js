@@ -1,5 +1,4 @@
-import { useArtContext } from "../utils/use-art-context"
-
+import { useArtContext } from "../utils/use-art-context";
 import ArtsList from "./components/ArtsList";
 
 export default function HomePage() {
@@ -11,6 +10,8 @@ export default function HomePage() {
     return (
       <div>
         <h1>Art Gallery</h1>
+        <h2>Home</h2>
+
         <ArtsList
           data={arts}
           toggleFavorite={toggleFavorite}

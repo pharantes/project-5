@@ -1,6 +1,5 @@
 import ArtsList from "./components/ArtsList";
-import { useArtContext } from "../utils/use-art-context"
-
+import { useArtContext } from "../utils/use-art-context";
 
 export default function HomePage() {
   const { favorites, toggleFavorite, addComment, isLoading, error } = useArtContext()

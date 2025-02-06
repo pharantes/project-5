@@ -1,4 +1,4 @@
-import ArtDetail from "./components/ArtDetail";
+import ArtsList from "./components/ArtsList";
 import { useArtContext } from "../utils/use-art-context"
 
 export default function Spotlight() {
@@ -12,10 +12,9 @@ export default function Spotlight() {
       <>
         <h1>Art Gallery</h1>
         <h2>Spotlight</h2>
-        <ArtDetail
+        <ArtsList
           toggleFavorite={toggleFavorite}
-          art={arts?.[random]}
-          addComment={addComment}
+          data={[arts?.[random]]}
         />
       </>
     );

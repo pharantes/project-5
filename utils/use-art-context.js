@@ -1,19 +1,19 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import useSWR from "swr";
 import useLocalStorage from "use-local-storage-state";
 
 const ArtContext = createContext();
-
 export function useArtContext() {
     return useContext(ArtContext);
 }
 const URL = "https://example-apis.vercel.app/api/art";
-export const ArtProvider = ({ children }) => {
+async function fetcher(url) {
+    const response = await fetch(url);
+    return await response.json();
+}
 
-    const { data, isLoading, error } = useSWR(URL);
-    const [favorites, setFavorites] = useLocalStorage("favorites", {
-        defaultValue: [],
-    });
+export const ArtProvider = ({ children }) => {
+    const { data, isLoading, error } = useSWR(URL, fetcher);
     const initialState = data?.map((art) => {
         return { ...art, comments: [], favorite: false };
     });
@@ -21,9 +21,18 @@ export const ArtProvider = ({ children }) => {
         defaultValue: initialState,
     });
 
+    const [favorites, setFavorites] = useLocalStorage("favorites", {
+        defaultValue: [],
+    });
+
+    useEffect(() => {
+        setArts((prevState) => prevState ? prevState : initialState);
+    }, [setArts, initialState]);
+
+
     function toggleFavorite(name) {
         setArts((prevState) =>
-            prevState.map((art) => {
+            prevState?.map((art) => {
                 if (art?.name === name) {
                     art.favorite = !art.favorite;
                     return art;
@@ -37,7 +46,7 @@ export const ArtProvider = ({ children }) => {
 
     function addComment(name, comment) {
         setArts((prevState) =>
-            prevState.map((art) => {
+            prevState?.map((art) => {
                 if (art?.name === name) {
                     art?.comments.push(comment);
                     return art;
@@ -49,9 +58,10 @@ export const ArtProvider = ({ children }) => {
         setFavorites(arts.filter((art) => art?.favorite === true));
     }
     return (
-        <ArtContext.Provider value={{ arts, favorites, toggleFavorite, addComment, isLoading, error }}>
-            {children}
-
-        </ArtContext.Provider>
+        <>
+            <ArtContext.Provider value={{ arts, favorites, toggleFavorite, addComment, isLoading, error }}>
+                {children}
+            </ArtContext.Provider>
+        </>
     );
 };
